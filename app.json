@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Controle de Higienização",
+    "slug": "controle-higienizacao",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -13,17 +13,40 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.higienizacao.app",
+      "infoPlist": {
+        "NFCReaderUsageDescription": "Este app precisa acessar NFC para ler tags de setores",
+        "NSCameraUsageDescription": "Este app precisa acessar a câmera para escanear QR Codes"
+      }
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "package": "com.higienizacao.app",
+      "permissions": [
+        "CAMERA",
+        "NFC"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-barcode-scanner",
+        {
+          "cameraPermission": "Permitir que $(PRODUCT_NAME) acesse a câmera para escanear QR Codes"
+        }
+      ],
+      [
+        "react-native-nfc-manager",
+        {
+          "nfcPermission": "Permitir que $(PRODUCT_NAME) acesse NFC para ler tags"
+        }
+      ]
+    ]
   }
 }
